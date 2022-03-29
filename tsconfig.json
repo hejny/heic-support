@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "jsx": "react",
+        "noEmit": false,
+        "downlevelIteration": true,
+        "esModuleInterop": true,
+        "strict": true
+    },
+    "include": ["src", "assets"],
+    "exclude": ["node_modules"]
+}
