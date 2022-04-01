@@ -1,3 +1,3 @@
 module.exports = {
-    entryPath: './src/heic-import.module.ts',
+    entryPath: './src/heic-import.module.tsx',
 };
