@@ -2,13 +2,10 @@ import {
     blobToDataUrl,
     centerArts,
     declareModule,
-    DeletedArt,
     fitInside,
     ImageArt,
-    LoaderInline,
     measureImageSize,
     patternToRegExp,
-    React,
     string_mime_type_with_wildcard,
 } from '@collboard/modules-sdk';
 import heic2any from 'heic2any';
@@ -51,35 +48,10 @@ declareModule({
 
         return importSystem.registerFileSupport({
             priority: 10,
-            async processFile({ logger, file: heicFile, boardPosition, next }) {
+            async processFile({ logger, file: heicFile, boardPosition, next, previewOperation }) {
                 if (!mimeTypes.some((mimeType) => patternToRegExp(mimeType).test(heicFile.type))) {
                     return next();
                 }
-
-                // Note: creating loading before image is converted
-                const preview = virtualArtVersioningSystem
-                    .createPrimaryOperation()
-                    .newArts(new DeletedArt() /* !!! new LoadingArt('Converting image from heic/heif to jpeg')*/)
-                    .persist();
-
-                const notification = notificationSystem.publish({
-                    tag: 'heic-conversion',
-                    type: 'info',
-                    // places: [NotificationPlace.Board],
-                    title: { en: 'HEIF/HEIC import' },
-                    body: {
-                        en: (
-                            <LoaderInline
-                                alt="Waiting for module from Colldev"
-                                canLoadForever
-                                icon={'file-image'}
-                                animation={'spinning'}
-                            >
-                                Converting {heicFile.name} to jpeg
-                            </LoaderInline>
-                        ),
-                    },
-                });
 
                 // Note: This can take longer time to process; for example 10 seconds for a HEIC file.
                 const jpegFile = await heic2any({
@@ -109,8 +81,7 @@ declareModule({
 
                 centerArts({ arts: [imageArt], boardPosition });
 
-                // Note: creating virtual art of image before real is uploaded
-                preview.newArts(imageArt).persist();
+                previewOperation.update(imageArt);
 
                 // TODO: Limit here max size of images> if(imageSize.x>this.systems.appState.windowSize*transform)
 
@@ -119,9 +90,6 @@ declareModule({
                 imageArt.opacity = 1;
 
                 const operation = materialArtVersioningSystem.createPrimaryOperation().newArts(imageArt).persist();
-
-                preview.abort();
-                notification.destroy();
 
                 // TODO: [🐅] Everytime when importing sth select this new art and do it DRY - via return operation;
                 await forImmediate();
