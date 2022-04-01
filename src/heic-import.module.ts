@@ -9,7 +9,7 @@ import {
     string_mime_type_with_wildcard,
 } from '@collboard/modules-sdk';
 import heic2any from 'heic2any';
-import { forEver, forImmediate } from 'waitasecond';
+import { forImmediate } from 'waitasecond';
 
 const mimeTypes: string_mime_type_with_wildcard[] = ['image/heic', 'image/heif'];
 
@@ -32,28 +32,30 @@ declareModule({
 
         return importSystem.registerFileSupport({
             priority: 10,
-            async processFile({ logger, file, boardPosition, next }) {
-                if (!mimeTypes.some((mimeType) => patternToRegExp(mimeType).test(file.type))) {
+            async processFile({ logger, file: heicFile, boardPosition, next }) {
+                if (!mimeTypes.some((mimeType) => patternToRegExp(mimeType).test(heicFile.type))) {
                     return next();
                 }
 
+                // !!! Loading art
                 // Note: This can take longer time to process; for example 10 seconds for a HEIC file.
-                const outputBuffer = await heic2any({
+                const jpegFile = await heic2any({
                     // @see https://github.com/alexcorvi/heic2any/blob/master/docs/options.md
-                    blob: file,
-                    toType: 'image/jpeg',
+                    blob: heicFile,
+                    toType: 'image/jpeg' /* <- TODO: Let user pick compression and type of conversion */,
                     quality: 0.85,
                 });
-                console.log(outputBuffer);
 
-                console.log({ file });
-                await forEver();
+                console.info({ heicFile, jpegFile });
 
-                let imageSrc = await blobToDataUrl(file /*outputBuffer as any*/);
+                let imageSrc = await blobToDataUrl(jpegFile as Blob);
+
+                console.log(imageSrc);
+                console.log('await measureImageSize(heicFile)', await measureImageSize(heicFile));
 
                 const imageScaledSize = fitInside({
                     isUpscaling: false,
-                    objectSize: await (await measureImageSize(file)).divide(appState.transform.scale),
+                    objectSize: await (await measureImageSize(heicFile)).divide(appState.transform.scale),
                     containerSize: appState.windowSize.divide(appState.transform.scale),
                 });
 
@@ -61,7 +63,7 @@ declareModule({
                 imageArt.size = imageScaledSize;
                 imageArt.opacity = 0.5;
 
-                logger.info('Imported svg art', imageArt);
+                logger.info('Imported art', imageArt);
 
                 centerArts({ arts: [imageArt], boardPosition });
 
@@ -70,7 +72,7 @@ declareModule({
 
                 // TODO: Limit here max size of images> if(imageSize.x>this.systems.appState.windowSize*transform)
 
-                imageSrc = await apiClient.fileUpload(file);
+                imageSrc = await apiClient.fileUpload(heicFile);
                 imageArt.src = imageSrc;
                 imageArt.opacity = 1;
 
