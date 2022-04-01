@@ -6,7 +6,6 @@ import {
     fitInside,
     ImageArt,
     LoaderInline,
-    LoadingArt,
     measureImageSize,
     patternToRegExp,
     React,
@@ -14,8 +13,6 @@ import {
 } from '@collboard/modules-sdk';
 import heic2any from 'heic2any';
 import { forImmediate } from 'waitasecond';
-
-console.log({ LoadingArt });
 
 const mimeTypes: string_mime_type_with_wildcard[] = ['image/heic', 'image/heif'];
 
@@ -83,7 +80,7 @@ declareModule({
                     quality: 0.85,
                 });
 
-                console.info({ heicFile, jpegFile });
+                logger.info({ heicFile, jpegFile });
 
                 let imageSrc = await blobToDataUrl(jpegFile as Blob);
 
@@ -133,7 +130,7 @@ declareModule({
  * [⚗️]
  */
 
-//================================================================================
+// ================================================================================
 // TODO: [⚗️] Proposal of Classical module maker
 /*
 FileModule.create({
