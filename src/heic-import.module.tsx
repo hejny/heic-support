@@ -13,12 +13,21 @@ import {
 } from '@collboard/modules-sdk';
 import heic2any from 'heic2any';
 import { forImmediate } from 'waitasecond';
+import { contributors, description, license, repository, version } from '../package.json';
 
 const mimeTypes: string_mime_type_with_wildcard[] = ['image/heic', 'image/heif'];
 
 declareModule({
     manifest: {
         name: '@collboard/svg-import',
+        contributors,
+        description,
+        license,
+        repository,
+        version,
+        flags: {
+            isHidden: true /* <- TODO: (File) support modules should be always hidden*/,
+        },
         supports: {
             fileImport: mimeTypes,
         },
