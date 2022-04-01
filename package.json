@@ -21,7 +21,7 @@
     },
     "dependencies": {},
     "devDependencies": {
-        "@collboard/modules-sdk": "18.32.0",
+        "@collboard/modules-sdk": "18.33.100",
         "heic2any": "0.0.3",
         "tslint": "6.1.3",
         "waitasecond": "1.9.0"
