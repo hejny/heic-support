@@ -1,5 +1,5 @@
 {
-    "name": "@collboard/hello-world-module",
+    "name": "@collboard/heif-support",
     "version": "0.3.26",
     "description": "(draft of) Support for HEIF/HEIC compressed images for Collboard.com created via @collboard/modules-sdk.",
     "license": "SEE LICENSE IN LICENSE",
@@ -23,6 +23,7 @@
     "devDependencies": {
         "@collboard/modules-sdk": "18.31.0",
         "heic-convert": "1.2.4",
+        "heic2any": "0.0.3",
         "jspdf": "2.5.1",
         "tslint": "6.1.3",
         "waitasecond": "1.9.0"

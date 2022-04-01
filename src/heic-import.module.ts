@@ -3,32 +3,18 @@ import {
     centerArts,
     declareModule,
     fitInside,
+    ImageArt,
     measureImageSize,
     patternToRegExp,
     string_mime_type_with_wildcard,
 } from '@collboard/modules-sdk';
-import { forImmediate } from 'waitasecond';
+// !!! Remove + remove dependency import { convert } from 'heic-convert';
+import heic2any from 'heic2any';
+import { forEver, forImmediate } from 'waitasecond';
 
-/*
- !!!
-const { promisify } = require('util');
-const fs = require('fs');
-const convert = require('heic-convert');
+const mimeTypes: string_mime_type_with_wildcard[] = ['image/heic', 'image/heif'];
 
-(async () => {
-  const inputBuffer = await promisify(fs.readFile)('/path/to/my/image.heic');
-  const outputBuffer = await convert({
-    buffer: inputBuffer, // the HEIC file buffer
-    format: 'JPEG',      // output format
-    quality: 1           // the jpeg compression quality, between 0 and 1
-  });
-
-  await promisify(fs.writeFile)('./result.jpg', outputBuffer);
-})();
-*/
-
-const mimeTypes: string_mime_type_with_wildcard[] = ['	image/heic', 'image/heif'];
-
+// !!! alert(123);
 declareModule({
     manifest: {
         name: '@collboard/svg-import',
@@ -53,7 +39,19 @@ declareModule({
                     return next();
                 }
 
-                let imageSrc = await blobToDataUrl(file);
+                // Note: This can take longer time to process; for example 10 seconds for a HEIC file.
+                const outputBuffer = await heic2any({
+                    // @see https://github.com/alexcorvi/heic2any/blob/master/docs/options.md
+                    blob: file,
+                    toType: 'image/jpeg',
+                    quality: 0.85,
+                });
+                console.log(outputBuffer);
+
+                console.log({ file });
+                await forEver();
+
+                let imageSrc = await blobToDataUrl(file /*outputBuffer as any*/);
 
                 const imageScaledSize = fitInside({
                     isUpscaling: false,
@@ -61,7 +59,7 @@ declareModule({
                     containerSize: appState.windowSize.divide(appState.transform.scale),
                 });
 
-                const imageArt = new ImageSvgArt(imageSrc, 'image');
+                const imageArt = new ImageArt(imageSrc, 'image');
                 imageArt.size = imageScaledSize;
                 imageArt.opacity = 0.5;
 
