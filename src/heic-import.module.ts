@@ -8,13 +8,11 @@ import {
     patternToRegExp,
     string_mime_type_with_wildcard,
 } from '@collboard/modules-sdk';
-// !!! Remove + remove dependency import { convert } from 'heic-convert';
 import heic2any from 'heic2any';
 import { forEver, forImmediate } from 'waitasecond';
 
 const mimeTypes: string_mime_type_with_wildcard[] = ['image/heic', 'image/heif'];
 
-// !!! alert(123);
 declareModule({
     manifest: {
         name: '@collboard/svg-import',
