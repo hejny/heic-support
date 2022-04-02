@@ -9,7 +9,6 @@ import {
     string_mime_type_with_wildcard,
 } from '@collboard/modules-sdk';
 import heic2any from 'heic2any';
-import { forImmediate } from 'waitasecond';
 import { contributors, description, license, repository, version } from '../package.json';
 
 const mimeTypes: string_mime_type_with_wildcard[] = ['image/heic', 'image/heif'];
@@ -48,10 +47,12 @@ declareModule({
 
         return importSystem.registerFileSupport({
             priority: 10,
-            async processFile({ logger, file: heicFile, boardPosition, next, previewOperation }) {
+            async processFile({ logger, file: heicFile, boardPosition, next, willCommitArts, previewOperation }) {
                 if (!mimeTypes.some((mimeType) => patternToRegExp(mimeType).test(heicFile.type))) {
                     return next();
                 }
+
+                willCommitArts();
 
                 // Note: This can take longer time to process; for example 10 seconds for a HEIC file.
                 const jpegFile = await heic2any({
@@ -90,10 +91,6 @@ declareModule({
                 imageArt.opacity = 1;
 
                 const operation = materialArtVersioningSystem.createPrimaryOperation().newArts(imageArt).persist();
-
-                // TODO: [🐅] Everytime when importing sth select this new art and do it DRY - via return operation;
-                await forImmediate();
-                appState.setSelection({ selected: [imageArt] });
 
                 return operation;
             },
