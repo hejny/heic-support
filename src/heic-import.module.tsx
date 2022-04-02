@@ -16,7 +16,7 @@ const mimeTypes: string_mime_type_with_wildcard[] = ['image/heic', 'image/heif']
 
 declareModule({
     manifest: {
-        name: '@collboard/svg-import',
+        name: '@collboard/heic-import',
         contributors,
         description,
         license,
