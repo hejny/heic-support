@@ -22,7 +22,7 @@ Support for HEIC/HEIF compressed images for [Collboard.com](https://collboard.co
 
 I am open to pull requests, feedback, and suggestions. Or if you like this utility, you can [☕ buy me a coffee](https://www.buymeacoffee.com/hejny) or [donate via cryptocurrencies](https://github.com/hejny/hejny/blob/main/documents/crypto.md).
 
-You can also ⭐ star the heif-support package, [follow me on GitHub](https://github.com/hejny) or [various other social networks](https://www.pavolhejny.com/contact/).
+You can also ⭐ star the heic-support package, [follow me on GitHub](https://github.com/hejny) or [various other social networks](https://www.pavolhejny.com/contact/).
 
 <!--/Contributing-->
 
