@@ -90,9 +90,7 @@ declareModule({
                 imageArt.src = imageSrc;
                 imageArt.opacity = 1;
 
-                const operation = materialArtVersioningSystem.createPrimaryOperation().newArts(imageArt).persist();
-
-                return operation;
+                return imageArt;
             },
         });
     },
