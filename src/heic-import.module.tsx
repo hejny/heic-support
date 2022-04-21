@@ -32,14 +32,14 @@ declareModule({
         const {
             importSystem,
             virtualArtVersioningSystem,
-            apiClient,
+            usercontentSystem,
             appState,
             materialArtVersioningSystem,
             notificationSystem,
         } = await systems.request(
             'importSystem',
             'virtualArtVersioningSystem',
-            'apiClient',
+            'usercontentSystem',
             'appState',
             'materialArtVersioningSystem',
             'notificationSystem',
@@ -86,7 +86,7 @@ declareModule({
 
                 // TODO: Limit here max size of images> if(imageSize.x>this.systems.appState.windowSize*transform)
 
-                imageSrc = await apiClient.fileUpload(jpegFile as Blob);
+                imageSrc = await usercontentSystem.upload(jpegFile as Blob);
                 imageArt.src = imageSrc;
                 imageArt.opacity = 1;
 
