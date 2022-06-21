@@ -47,7 +47,7 @@ declareModule({
 
         return importSystem.registerFileSupport({
             priority: 10,
-            async processFile({ logger, file: heicFile, boardPosition, next, willCommitArts, previewOperation }) {
+            async importFile({ logger, file: heicFile, boardPosition, next, willCommitArts, previewOperation }) {
                 if (!mimeTypes.some((mimeType) => patternToRegExp(mimeType).test(heicFile.type))) {
                     return next();
                 }
