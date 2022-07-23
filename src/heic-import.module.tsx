@@ -7,6 +7,7 @@ import {
     measureImageSize,
     patternToRegExp,
     string_mime_type_with_wildcard,
+    windowSize,
 } from '@collboard/modules-sdk';
 import heic2any from 'heic2any';
 import { contributors, description, license, repository, version } from '../package.json';
@@ -70,8 +71,8 @@ declareModule({
 
                 const imageScaledSize = fitInside({
                     isUpscaling: false,
-                    objectSize: await (await measureImageSize(imageSrc)).divide(appState.transform.scale),
-                    containerSize: appState.windowSize.divide(appState.transform.scale),
+                    objectSize: await (await measureImageSize(imageSrc)).divide(appState.transform.value.scale),
+                    containerSize: windowSize.value.divide(appState.transform.value.scale),
                 });
 
                 const imageArt = new ImageArt(imageSrc, 'image');
