@@ -1,13 +1,13 @@
 import {
-    blobToDataUrl,
-    centerArts,
-    declareModule,
-    fitInside,
-    ImageArt,
-    measureImageSize,
-    patternToRegExp,
-    string_mime_type_with_wildcard,
-    windowSize,
+  blobToDataurl,
+  centerArts,
+  declareModule,
+  fitInside,
+  ImageArt,
+  measureImageSize,
+  patternToRegExp,
+  string_mime_type_with_wildcard,
+  windowSize
 } from '@collboard/modules-sdk';
 import heic2any from 'heic2any';
 import { contributors, description, license, repository, version } from '../package.json';
@@ -65,7 +65,7 @@ declareModule({
 
                 logger.info({ heicFile, jpegFile });
 
-                let imageSrc = await blobToDataUrl(jpegFile as Blob);
+                let imageSrc = await blobToDataurl(jpegFile as Blob);
 
                 // await previewImage(imageSrc);
 
