@@ -40,15 +40,15 @@ You can also ⭐ star the heic-support package, [follow me on GitHub](https://gi
 
 
 <a href="https://collboard.com/">
-<img src="https://collboard.fra1.cdn.digitaloceanspaces.com/assets/18.12.1/logo-small.png" alt="Collboard logo" width="50"  />
+  <img src="https://collboard.fra1.cdn.digitaloceanspaces.com/assets/18.12.1/logo-small.png" alt="Collboard logo" width="50"  />
 </a>
 &nbsp;&nbsp;&nbsp;
 <a href="https://czech.events/">
-<img src="https://czech.events/design/logos/czech.events.transparent-logo.png" alt="Czech.events logo" width="50"  />
+  <img src="https://czech.events/design/logos/czech.events.transparent-logo.png" alt="Czech.events logo" width="50"  />
 </a>
 &nbsp;&nbsp;&nbsp;
 <a href="https://sigmastamp.ml/">
-<img src="https://www.sigmastamp.ml/sigmastamp-logo.white.svg" alt="SigmaStamp logo" width="50"  />
+  <img src="https://www.sigmastamp.ml/sigmastamp-logo.white.svg" alt="SigmaStamp logo" width="50"  />
 </a>
 
 
