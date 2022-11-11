@@ -15,10 +15,10 @@ Support for HEIC/HEIF compressed images for [Collboard.com](https://collboard.co
 
 
 [![License of 🖼️ HEIC images for Collboard](https://img.shields.io/github/license/hejny/heic-support.svg?style=flat)](https://github.com/hejny/heic-support/blob/main/LICENSE)
-[![lint](https://github.com/hejny/heic-support/actions/workflows/lint.yml/badge.svg)](https://github.com/hejny/heic-support/actions/workflows/lint.yml)
-[![test](https://github.com/hejny/heic-support/actions/workflows/test.yml/badge.svg)](https://github.com/hejny/heic-support/actions/workflows/test.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/hejny/heic-support/badge.svg)](https://snyk.io/test/github/hejny/heic-support)
 [![Issues](https://img.shields.io/github/issues/hejny/heic-support.svg?style=flat)](https://github.com/hejny/heic-support/issues)
+<!--[![lint](https://github.com/hejny/heic-support/actions/workflows/lint.yml/badge.svg)](https://github.com/hejny/heic-support/actions/workflows/lint.yml)-->
+<!--[![test](https://github.com/hejny/heic-support/actions/workflows/test.yml/badge.svg)](https://github.com/hejny/heic-support/actions/workflows/test.yml)-->
 
 <!--/Badges-->
 
