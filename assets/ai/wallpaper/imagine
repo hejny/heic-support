@@ -1,5 +1,6 @@
 # Note: Each part is new input for imagine command
 #       And every first line will be searched during the harvesting phase
+# @batch-project-editor ignore
 
 Support for HEIC/HEIF compressed images for virtual online whiteboard .
 --version 4
