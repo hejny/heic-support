@@ -1,13 +1,13 @@
 import {
-  blobToDataurl,
-  centerArts,
-  declareModule,
-  fitInside,
-  ImageArt,
-  measureImageSize,
-  patternToRegExp,
-  string_mime_type_with_wildcard,
-  windowSize
+    blobToDataurl,
+    centerArts,
+    declareModule,
+    fitInside,
+    ImageArt,
+    measureImageSize,
+    patternToRegExp,
+    string_mime_type_with_wildcard,
+    windowSize,
 } from '@collboard/modules-sdk';
 import heic2any from 'heic2any';
 import { contributors, description, license, repository, version } from '../package.json';
@@ -87,7 +87,7 @@ declareModule({
 
                 // TODO: Limit here max size of images> if(imageSize.x>this.systems.appState.windowSize*transform)
 
-                imageSrc = await usercontentSystem.upload(jpegFile as Blob);
+                imageSrc = (await usercontentSystem.upload(jpegFile as Blob)).href;
                 imageArt.src = imageSrc;
                 imageArt.opacity = 1;
 
