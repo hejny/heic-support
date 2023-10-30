@@ -1,6 +1,6 @@
 {
     "name": "@collboard/heif-support",
-    "version": "1.0.173",
+    "version": "1.0.174",
     "description": "Support for HEIC/HEIF compressed images for Collboard.com See all file support modules for Collboard.",
     "license": "SEE LICENSE IN LICENSE",
     "contributors": [
