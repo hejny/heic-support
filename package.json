@@ -22,6 +22,6 @@
         "@collboard/modules-sdk": "35.11.900",
         "heic2any": "0.0.3",
         "tslint": "6.1.3",
-        "waitasecond": "^1.11.21"
+        "waitasecond": "1.11.21"
     }
 }
